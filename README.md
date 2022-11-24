@@ -164,7 +164,11 @@ canonicalUrl: https://random-blog-about-curses.com/curses-counter-curses-and-mor
 
 The `date` field has to be written in the format `YYYY-MM-DD`!
 
+<<<<<<< HEAD
 #### Adding a new page...
+=======
+#### Adding a new page
+>>>>>>> 3ef5d3b4bf962ccf92a6947d1ab79c8135446339
 
 Additional pages can be created by placing MDX files inside `contents/pages`, e.g. an "About" or "Contact" page. You'll manually need to link to those pages, for example by adding them to the navigation (in `siteMetadata`). General instructions:
 
