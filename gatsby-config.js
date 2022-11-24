@@ -1,65 +1,84 @@
-const metaConfig = require("./site-meta-config")
+require(`dotenv`).config()
 
-/**
- * Configure your Gatsby site with this file.
- *
- * See: https://www.gatsbyjs.com/docs/reference/config-files/gatsby-config/
- */
+const shouldAnalyseBundle = process.env.ANALYSE_BUNDLE
+const metaConfig = require("./site-meta-config")
 
 /**
  * @type {import('gatsby').GatsbyConfig}
  */
 module.exports = {
-  siteMetadata: {
-    title: `Gatsby Starter Blog`,
-    author: {
-      name: `Kyle Mathews`,
-      summary: `who lives and works in San Francisco building useful things.`,
-    },
-    description: `A starter blog demonstrating what Gatsby can do.`,
-    siteUrl: `https://gatsbystarterblogsource.gatsbyjs.io/`,
-    social: {
-      twitter: `kylemathews`,
-    },
-  },
+  siteMetadata: metaConfig,
+  trailingSlash: `never`,
   plugins: [
-    `gatsby-plugin-image`,
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: `gatsby-plugin-google-gtag`,
       options: {
-        path: `${__dirname}/content/blog`,
-        name: `blog`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
-      },
-    },
-    {
-      resolve: `gatsby-transformer-remark`,
-      options: {
-        plugins: [
-          {
-            resolve: `gatsby-remark-images`,
-            options: {
-              maxWidth: 630,
-            },
-          },
-          {
-            resolve: `gatsby-remark-responsive-iframe`,
-            options: {
-              wrapperStyle: `margin-bottom: 1.0725rem`,
-            },
-          },
-          `gatsby-remark-prismjs`,
+        // You can add multiple tracking ids and a pageview event will be fired for all of them.
+        trackingIds: [
+          'G-DZVFKEM63P', // 설정 Google Analytics / GA
+          // "AW-CONVERSION_ID", // Google Ads / Adwords / AW
+          // "DC-FLOODIGHT_ID", // Marketing Platform advertising products (Display & Video 360, Search Ads 360, and Campaign Manager)
         ],
       },
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
+    {
+      resolve: `@lekoarts/gatsby-theme-minimal-blog`,
+      // See the theme's README for all available options
+      options: {
+        navigation: [
+          {
+            title: `Blog`,
+            slug: `/blog`,
+          },
+          {
+            title: `About`,
+            slug: `/about`,
+          },
+        ],
+        externalLinks: [
+          {
+            name: `Twitter`,
+            url: `https://twitter.com/lekoarts_de`,
+          },
+          {
+            name: `Homepage`,
+            url: `https://www.lekoarts.de?utm_source=minimal-blog&utm_medium=Starter`,
+          },
+        ],
+      },
+    },
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        output: `/`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `minimal-blog - @lekoarts/gatsby-theme-minimal-blog`,
+        short_name: `minimal-blog`,
+        description: `Typography driven, feature-rich blogging theme with minimal aesthetics. Includes tags/categories support and extensive features for code blocks such as live preview, line numbers, and code highlighting.`,
+        start_url: `/`,
+        background_color: `#fff`,
+        // This will impact how browsers show your PWA/website
+        // https://css-tricks.com/meta-theme-color-and-trickery/
+        // theme_color: `#6B46C1`,
+        display: `standalone`,
+        icons: [
+          {
+            src: `/android-chrome-192x192.png`,
+            sizes: `192x192`,
+            type: `image/png`,
+          },
+          {
+            src: `/android-chrome-512x512.png`,
+            sizes: `512x512`,
+            type: `image/png`,
+          },
+        ],
+      },
+    },
     {
       resolve: `gatsby-plugin-feed`,
       options: {
@@ -67,8 +86,8 @@ module.exports = {
           {
             site {
               siteMetadata {
-                title
-                description
+                title: siteTitle
+                description: siteDescription
                 siteUrl
                 site_url: siteUrl
               }
@@ -77,51 +96,43 @@ module.exports = {
         `,
         feeds: [
           {
-            serialize: ({ query: { site, allMarkdownRemark } }) => {
-              return allMarkdownRemark.nodes.map(node => {
-                return Object.assign({}, node.frontmatter, {
-                  description: node.excerpt,
-                  date: node.frontmatter.date,
-                  url: site.siteMetadata.siteUrl + node.fields.slug,
-                  guid: site.siteMetadata.siteUrl + node.fields.slug,
-                  custom_elements: [{ "content:encoded": node.html }],
-                })
-              })
-            },
-            query: `{
-              allMarkdownRemark(sort: {frontmatter: {date: DESC}}) {
-                nodes {
-                  excerpt
-                  html
-                  fields {
-                    slug
-                  }
-                  frontmatter {
-                    title
-                    date
-                  }
+            serialize: ({ query: { site, allPost } }) =>
+              allPost.nodes.map((post) => {
+                const url = site.siteMetadata.siteUrl + post.slug
+                const content = `<p>${post.excerpt}</p><div style="margin-top: 50px; font-style: italic;"><strong><a href="${url}">Keep reading</a>.</strong></div><br /> <br />`
+
+                return {
+                  title: post.title,
+                  date: post.date,
+                  excerpt: post.excerpt,
+                  url,
+                  guid: url,
+                  custom_elements: [{ "content:encoded": content }],
                 }
-              }
-            }`,
-            output: "/rss.xml",
-            title: "Gatsby Starter Blog RSS Feed",
+              }),
+            query: `{
+  allPost(sort: {date: DESC}) {
+    nodes {
+      title
+      date(formatString: "MMMM D, YYYY")
+      excerpt
+      slug
+    }
+  }
+}`,
+            output: `rss.xml`,
+            title: `Minimal Blog - @lekoarts/gatsby-theme-minimal-blog`,
           },
         ],
       },
     },
-    {
-      resolve: `gatsby-plugin-manifest`,
+    shouldAnalyseBundle && {
+      resolve: `gatsby-plugin-webpack-bundle-analyser-v2`,
       options: {
-        name: `Gatsby Starter Blog`,
-        short_name: `Gatsby`,
-        start_url: `/`,
-        background_color: `#ffffff`,
-        // This will impact how browsers show your PWA/website
-        // https://css-tricks.com/meta-theme-color-and-trickery/
-        // theme_color: `#663399`,
-        display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        analyzerMode: `static`,
+        reportFilename: `_bundle.html`,
+        openAnalyzer: false,
       },
     },
-  ],
+  ].filter(Boolean),
 }

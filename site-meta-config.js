@@ -1,13 +1,15 @@
 module.exports = {
-  title: `Yeojin's Log`,
-  subtitle: `Yeojin's Log`,
-  description: `Yeojin's Log`,
-  author: {
-    name: `@Yeojining5`,
-    summary: `live in SeongNam, Korea`,
-  },
-  introduction: `안녕하세요.`,
-  siteUrl: `https://Yeojining5.github.io/`, // Your blog site url
+  // You can overwrite values here that are used for the SEO component
+  // You can also add new values here to query them like usual
+  // See all options: https://github.com/LekoArts/gatsby-themes/blob/main/themes/gatsby-theme-minimal-blog/gatsby-config.js
+  siteTitle: `Yeojin's Log`,
+  siteTitleAlt: `Yeojin's Log`,
+  siteHeadline: `Yeojin's Log - Gatsby Theme from @lekoarts`,
+  siteUrl: `https://Yeojining5.github.io/`,
+  siteDescription: `Typography driven, feature-rich blogging theme with minimal aesthetics. Includes tags/categories support and extensive features for code blocks such as live preview, line numbers, and line highlighting.`,
+  siteImage: `/banner.jpg`,
+  author: `Yeojining5`,
+
   social: {
     github: `yeojining5@gmail.com`, // Your GitHub account
     medium: ``, // Your Medium account
