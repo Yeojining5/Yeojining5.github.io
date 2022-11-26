@@ -1,3 +1,4 @@
 User-agent: *
-
-sitemap: https://minimal-blog.lekoarts.de/sitemap-index.xml
+Allow: /
+Sitemap: https://Yeojining5.github.io/sitemap.xml
+Host: https://yeojining5.github.io

@@ -1,0 +1,39 @@
+## Created with gatsby-plugin-netlify
+
+/*
+  X-Frame-Options: DENY
+  X-XSS-Protection: 1; mode=block
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: same-origin
+/commons-813d7d5dededac79ac8d.js
+  Cache-Control: public, max-age=31536000, immutable
+/component---node-modules-lekoarts-gatsby-theme-minimal-blog-core-src-templates-homepage-query-tsx-05e4b741074c326f7d49.js
+  Cache-Control: public, max-age=31536000, immutable
+/component---node-modules-lekoarts-gatsby-theme-minimal-blog-core-src-templates-blog-query-tsx-822c8b03cbaafc774399.js
+  Cache-Control: public, max-age=31536000, immutable
+/component---node-modules-lekoarts-gatsby-theme-minimal-blog-core-src-templates-tags-query-tsx-e7e2893121401936b835.js
+  Cache-Control: public, max-age=31536000, immutable
+/component---node-modules-lekoarts-gatsby-theme-minimal-blog-core-src-templates-post-query-tsx-content-file-path-c-myspace-my-gatsby-project-content-posts-with-images-index-mdx-a97212fd8bb630310572.js
+  Cache-Control: public, max-age=31536000, immutable
+/component---node-modules-lekoarts-gatsby-theme-minimal-blog-core-src-templates-post-query-tsx-content-file-path-c-myspace-my-gatsby-project-content-posts-markdown-reference-index-mdx-3ed8913576acd85dc800.js
+  Cache-Control: public, max-age=31536000, immutable
+/component---node-modules-lekoarts-gatsby-theme-minimal-blog-core-src-templates-post-query-tsx-content-file-path-c-myspace-my-gatsby-project-content-posts-code-block-examples-index-mdx-6c30b06f07887119efc7.js
+  Cache-Control: public, max-age=31536000, immutable
+/component---node-modules-lekoarts-gatsby-theme-minimal-blog-core-src-templates-post-query-tsx-content-file-path-c-myspace-my-gatsby-project-content-posts-normal-text-index-mdx-b5c1254c531ca6aeb2fa.js
+  Cache-Control: public, max-age=31536000, immutable
+/component---node-modules-lekoarts-gatsby-theme-minimal-blog-core-src-templates-page-query-tsx-content-file-path-c-myspace-my-gatsby-project-content-pages-about-index-mdx-fd3b28bbc79ffdeabc08.js
+  Cache-Control: public, max-age=31536000, immutable
+/component---node-modules-lekoarts-gatsby-theme-minimal-blog-core-src-templates-tag-query-tsx-2b1f018ad671e058fb53.js
+  Cache-Control: public, max-age=31536000, immutable
+/component---src-pages-404-jsx-ba2d958fac0ad0452a0a.js
+  Cache-Control: public, max-age=31536000, immutable
+/webpack-runtime-ee4738fd4bf16ef36e65.js
+  Cache-Control: public, max-age=31536000, immutable
+/framework-fd150c1d88edc0f94a54.js
+  Cache-Control: public, max-age=31536000, immutable
+/app-ec03641be68bbd18db18.js
+  Cache-Control: public, max-age=31536000, immutable
+/static/*
+  Cache-Control: public, max-age=31536000, immutable
+/sw.js
+  Cache-Control: no-cache
