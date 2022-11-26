@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://Yeojining5.github.io/sitemap.xml
+Sitemap: https://yeojining5.github.io/sitemap.xml
 Host: https://yeojining5.github.io
